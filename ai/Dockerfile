@@ -55,9 +55,6 @@ RUN yay --noconfirm -S \
     codename-goose \
     nano
 
-# Set a default shell for the user
-RUN sudo chsh -s /usr/bin/zsh $USER
-
 # Clean up package cache to keep the image small.
 # This needs to be run with root privileges.
 USER root
@@ -65,6 +62,8 @@ RUN pacman -Scc --noconfirm
 
 # Return to the non-root user for the final image
 USER $USER
+
+COPY export-installed-bins.sh /usr/local/bin/export-installed-bins.sh
 
 # Set a default command to run when the container starts
 CMD ["/bin/bash"]

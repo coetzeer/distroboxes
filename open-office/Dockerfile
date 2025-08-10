@@ -37,10 +37,7 @@ RUN rm -rf yay
 # The `sudo` is required because `yay` often needs elevated privileges for `pacman` operations.
 # You can use `yay --noconfirm -S` for automated installations.
 RUN yay --noconfirm -S \
-    openoffice-bin
-
-# Set a default shell for the user
-RUN sudo chsh -s /usr/bin/zsh $USER
+    openoffice-bin apr-util java-environment gstreamer0.10-base mesa mime-types nss raptor1
 
 # Clean up package cache to keep the image small.
 # This needs to be run with root privileges.
