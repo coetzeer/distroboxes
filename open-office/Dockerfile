@@ -37,23 +37,7 @@ RUN rm -rf yay
 # The `sudo` is required because `yay` often needs elevated privileges for `pacman` operations.
 # You can use `yay --noconfirm -S` for automated installations.
 RUN yay --noconfirm -S \
-    neovim \
-    tmux \
-    zsh \
-    gemini-cli \
-    opencode-bin \
-    crush-bin \
-    amazon-q-bin \
-    nano
-    
-
-RUN yay --noconfirm -S \
-    claude-code \
-    qwen-code \
-    openai-codex \
-    cursor-cli \
-    codename-goose \
-    nano
+    openoffice-bin
 
 # Set a default shell for the user
 RUN sudo chsh -s /usr/bin/zsh $USER
