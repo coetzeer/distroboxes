@@ -52,6 +52,7 @@ jobs:
           context: ./ai
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
           outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/db-ai,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
