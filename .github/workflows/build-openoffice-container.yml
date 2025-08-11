@@ -58,7 +58,6 @@ jobs:
         with:
           context: ./open-office
           platforms: ${{ matrix.platform }}
-          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/open-office,push-by-digest=true,name-canonical=true,push=true
 
@@ -112,13 +111,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Create and push multi-arch manifest list
+
       - name: Create manifest list and push
         working-directory: /tmp/digests
         run: |
           digests=$(ls *.digest | xargs -I{} cat {})
-          docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "${{ steps.meta.outputs.json }}") \
-            $(for digest in $digests; do echo -n "ghcr.io/${{ github.repository_owner }}/open-office@${digest} "; done)
+          for tag in ${{ steps.meta.outputs.tags }}; do
+            tag_args="$tag_args -t $tag"
+          done
+          docker buildx imagetools create $tag_args $(for digest in $digests; do echo -n "ghcr.io/${{ github.repository_owner }}/db-ai@${digest} "; done)
 
       # Inspect the final image manifest
       - name: Inspect image
