@@ -7,21 +7,21 @@ export DBX_CONTAINER_MANAGER="docker"
 to build:
 
 ```
-docker build -t db-ai .
+docker build -t open-office .
 
 ```
 
 to create distrobox:
 
 ```
-distrobox create --name db-ai --image db-ai
+distrobox create --name open-office --image open-office
 
 ```
 
 then enter the dragon:
 
 ```
-distrobox enter db-ai
+distrobox enter open-office
 
 ```
 
@@ -30,20 +30,20 @@ Or Podman (don't set the environment variable)
 to build:
 
 ```
-podman build -t db-ai .
+podman build --no-cache -t open-office .
 
 ```
 
 to create distrobox:
 
 ```
-distrobox create --name db-ai --image db-ai
+distrobox create --name open-office --image open-office
 
 ```
 
 then enter the dragon:
 
 ```
-distrobox enter db-ai
+distrobox enter open-office
 
 ```

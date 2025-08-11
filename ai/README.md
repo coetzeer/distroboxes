@@ -30,7 +30,7 @@ Or Podman (don't set the environment variable)
 to build:
 
 ```
-podman build --nocache -t db-ai .
+podman build --no-cache -t db-ai .
 
 ```
 
