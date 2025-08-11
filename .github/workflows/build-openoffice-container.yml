@@ -116,10 +116,11 @@ jobs:
         working-directory: /tmp/digests
         run: |
           digests=$(ls *.digest | xargs -I{} cat {})
+          tag_args=""
           for tag in ${{ steps.meta.outputs.tags }}; do
             tag_args="$tag_args -t $tag"
           done
-          docker buildx imagetools create $tag_args $(for digest in $digests; do echo -n "ghcr.io/${{ github.repository_owner }}/db-ai@${digest} "; done)
+          docker buildx imagetools create $tag_args $(for digest in $digests; do echo -n "ghcr.io/${{ github.repository_owner }}/open-office@${digest} "; done)
 
       # Inspect the final image manifest
       - name: Inspect image
