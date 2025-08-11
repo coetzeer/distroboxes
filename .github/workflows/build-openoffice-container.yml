@@ -13,6 +13,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: build
     permissions:
       contents: read
       packages: write
@@ -39,7 +40,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
 
       # Extract Docker image metadata (tags, labels)
       - name: Extract metadata for Docker
@@ -109,7 +110,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GH_TOKEN }}
 
 
       - name: Create manifest list and push
