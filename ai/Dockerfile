@@ -47,14 +47,14 @@ RUN yay --noconfirm -S \
     nano
     
 
-RUN yay --noconfirm -S \
-    claude-code \
-    qwen-code \
-    openai-codex \
-    cursor-cli
+# RUN yay --noconfirm -S \
+#     claude-code \
+#     qwen-code \
+#     openai-codex \
+#     cursor-cli
 
-RUN yay --noconfirm -S \
-    codename-goose s
+# RUN yay --noconfirm -S \
+#     codename-goose s
 
 # Clean up package cache to keep the image small.
 # This needs to be run with root privileges.
