@@ -20,7 +20,18 @@ WORKDIR /home/$USER
 # Install yay from the AUR
 # We use a temporary directory for the build process.
 # We also use `su -c` to run the command as the new user.
-RUN git clone https://aur.archlinux.org/yay.git && \
+RUN set -e; \
+    max_attempts=5; \
+    attempt=1; \
+    until git clone https://aur.archlinux.org/yay.git; do \
+      if [ $attempt -ge $max_attempts ]; then \
+        echo "git clone failed after $attempt attempts."; exit 1; \
+      fi; \
+      sleep_time=$((2 ** attempt)); \
+      echo "git clone failed. Retrying in $sleep_time seconds..."; \
+      sleep $sleep_time; \
+      attempt=$((attempt + 1)); \
+    done && \
     cd yay && \
     makepkg -si --noconfirm
 
