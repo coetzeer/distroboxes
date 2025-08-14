@@ -46,12 +46,11 @@ RUN yay --noconfirm -S \
     amazon-q-bin \
     nano
     
-
-# RUN yay --noconfirm -S \
-#     claude-code \
-#     qwen-code \
-#     openai-codex \
-#     cursor-cli
+RUN yay --noconfirm -S \
+    claude-code \
+    qwen-code \
+    openai-codex \
+    cursor-cli
 
 # RUN yay --noconfirm -S \
 #     codename-goose s
