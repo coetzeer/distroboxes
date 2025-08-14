@@ -59,7 +59,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/arch-base,push-by-digest=true,name-canonical=true,push=true
+          # outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/arch-base,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
         run: |
