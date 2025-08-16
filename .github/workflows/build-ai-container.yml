@@ -7,7 +7,7 @@ on:
     tags:
       - 'v*' 
   schedule:
-    - cron: '0 2 * * 4' # Run at 2 AM UTC every Thursday
+    - cron: '0 3 * * *' # Run at 3 AM UTC every day
   workflow_dispatch: # Allows manual trigger
 
 jobs:
