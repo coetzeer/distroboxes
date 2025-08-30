@@ -1,0 +1,8 @@
+---
+# Note: External downloads fail during Docker build due to DNS issues
+# AI tools can be installed manually after container creation
+# This creates a base system ready for manual tool installation
+
+- name: Create placeholder for AI tools installation
+  debug:
+    msg: "Base system ready. AI tools (q, gemini-cli, qwen) can be installed manually after container creation."

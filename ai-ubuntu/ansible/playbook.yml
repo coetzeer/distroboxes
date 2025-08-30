@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - import_tasks: tasks/base-packages.yml
+    - import_tasks: tasks/ai-tools.yml
+    - import_tasks: tasks/user-setup.yml

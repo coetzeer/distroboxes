@@ -1,0 +1,12 @@
+---
+- name: Create distrobox user
+  user:
+    name: distrobox
+    shell: /bin/bash
+    create_home: yes
+
+- name: Add distrobox to sudoers
+  lineinfile:
+    path: /etc/sudoers
+    line: 'distrobox ALL=(ALL) NOPASSWD:ALL'
+    validate: 'visudo -cf %s'
