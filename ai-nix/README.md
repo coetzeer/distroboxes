@@ -5,19 +5,19 @@ A Nix-based distrobox container with AI CLI tools: gemini-cli, qwen-cli, and Ama
 ## Build
 
 ```bash
-podman build . -t db-ai-nix
+podman build . -t ai-nix
 ```
 
 ## Usage
 
 Create distrobox:
 ```bash
-distrobox create --name db-ai-nix --image db-ai-nix
+distrobox create --name db-ai-nix --image ai-nix
 ```
 
 Enter container:
 ```bash
-distrobox enter db-ai-nix
+distrobox enter ai-nix
 ```
 
 Export tools to host:
