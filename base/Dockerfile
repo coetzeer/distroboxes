@@ -4,7 +4,7 @@ RUN pacman-key --init && pacman-key --populate archlinux && pacman -Syu --noconf
 
 RUN pacman -S --noconfirm base-devel git sudo
 
-ARG USER=archuser
+ARG USER=agent
 ARG UID=1000
 
 RUN useradd -m -u $UID -G wheel $USER
@@ -12,6 +12,14 @@ RUN useradd -m -u $UID -G wheel $USER
 # Configure sudoers to allow the wheel group to run commands without a password,
 # which is useful for automation in a Docker context.
 RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/wheel-group
+
+# Install Homebrew
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/install.sh)" && \
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/$USER/.bashrc && \
+    export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
+# Install language servers
+RUN brew install typescript-language-server pyright rust-analyzer gopls 2>/dev/null || true
 
 # Switch to the new user and set the working directory
 USER $USER
