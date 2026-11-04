@@ -5,7 +5,8 @@ FROM ghcr.io/coetzeer/arch-base:main
 # This assumes the user `archuser` is configured to use yay.
 # The `sudo` is required because `yay` often needs elevated privileges for `pacman` operations.
 # You can use `yay --noconfirm -S` for automated installations.
-RUN yay --removemake --needed --noprogressbar --noconfirm -S \
+RUN sudo pacman -Syu --noconfirm && \
+    yay --removemake --needed --noprogressbar --noconfirm -S \
     neovim \
     tmux \
     zsh \

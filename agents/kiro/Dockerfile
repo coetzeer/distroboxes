@@ -1,4 +1,4 @@
-FROM ghcr.io/raymondcoetzee/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/arch-base:main
 
 # Install kiro
 RUN brew install kiro 2>/dev/null || true

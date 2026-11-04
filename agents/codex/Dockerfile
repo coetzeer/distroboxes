@@ -1,7 +1,7 @@
-FROM ghcr.io/coetzeer/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/arch-base:main
 
-# Install kiloCode
-RUN brew install kilo 2>/dev/null || true
+# Install codex
+RUN brew install codex 2>/dev/null || true
 
 # Switch to the default user
 USER agent

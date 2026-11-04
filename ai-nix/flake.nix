@@ -36,7 +36,6 @@
           python3
           python3Packages.pip
           nodejs
-          nodePackages.npm
           
           # AI tools from nix folder
           (import ./nix/amp.nix { inherit pkgs; })

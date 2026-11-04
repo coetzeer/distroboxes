@@ -6,6 +6,11 @@ on:
       - 'main'
     tags:
       - 'v*' 
+  pull_request:
+    paths:
+      - 'agents/commandcode/**'
+      - 'base/**'
+      - '.github/workflows/commandcode-container.yml'
   workflow_dispatch: # Allows manual trigger
 
 jobs:
@@ -34,7 +39,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GH_TOKEN }}
+          password: ${{ github.event_name == 'pull_request' && github.token || secrets.GH_TOKEN }}
 
       - name: Extract metadata for Docker
         id: meta
@@ -52,7 +57,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./commandcode
+          context: ./agents/commandcode
           push: ${{ github.event_name != 'pull_request' }}
           platforms: ${{ matrix.platform }}
           tags: ${{ steps.meta.outputs.tags }}
