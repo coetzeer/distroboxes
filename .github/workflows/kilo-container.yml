@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/kilo/**'
+      - 'base/**'
+      - '.github/workflows/kilo-container.yml'
     tags:
       - 'v*' 
   pull_request:

@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/goose/**'
+      - 'base/**'
+      - '.github/workflows/goose-container.yml'
     tags:
       - 'v*' 
   pull_request:

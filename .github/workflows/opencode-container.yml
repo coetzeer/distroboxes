@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/opencode/**'
+      - 'base/**'
+      - '.github/workflows/opencode-container.yml'
     tags:
       - 'v*' 
   pull_request:

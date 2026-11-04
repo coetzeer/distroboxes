@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/freebuff/**'
+      - 'base/**'
+      - '.github/workflows/freebuff-container.yml'
     tags:
       - 'v*'
   pull_request:
