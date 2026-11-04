@@ -1,7 +1,8 @@
 FROM ghcr.io/coetzeer/arch-base:main
 
 # Install Node.js and Freebuff
-RUN brew install node && \
+USER root
+RUN pacman -S --noconfirm nodejs npm && \
     npm install -g freebuff
 
 # Switch to the default user
