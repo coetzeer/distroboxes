@@ -1,4 +1,4 @@
-FROM ghcr.io/coetzeer/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/arch-base:main
 
 # Install Node.js and Freebuff
 RUN brew install node && \

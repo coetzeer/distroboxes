@@ -1,4 +1,4 @@
-FROM ghcr.io/coetzeer/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/arch-base:main
 
 # Install claude
 RUN brew install claude 2>/dev/null || true

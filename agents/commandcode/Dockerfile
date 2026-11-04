@@ -1,4 +1,4 @@
-FROM ghcr.io/coetzeer/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/arch-base:main
 
 # Install commandcode from the coetzeestroom tap
 RUN brew tap coetzeestroom/homebrew-command-code 2>/dev/null || true && \
