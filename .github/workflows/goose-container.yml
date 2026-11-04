@@ -52,7 +52,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
         with:
-          context: ./goose
+          context: ./agents/goose
           push: ${{ github.event_name != 'pull_request' }}
           platforms: ${{ matrix.platform }}
           tags: ${{ steps.meta.outputs.tags }}
