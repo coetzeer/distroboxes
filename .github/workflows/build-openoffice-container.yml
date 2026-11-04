@@ -7,6 +7,11 @@ on:
       - 'main'
     tags:
       - 'v*' 
+  pull_request:
+    paths:
+      - 'open-office/**'
+      - 'base/**'
+      - '.github/workflows/build-openoffice-container.yml'
   workflow_dispatch: # Allows manual trigger
 
 
@@ -36,6 +41,7 @@ jobs:
 
       # Login to GitHub Container Registry
       - name: Login to GitHub Container Registry
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
