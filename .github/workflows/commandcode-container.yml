@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/commandcode/**'
+      - 'base/**'
+      - '.github/workflows/commandcode-container.yml'
     tags:
       - 'v*' 
   pull_request:

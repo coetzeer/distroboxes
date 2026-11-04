@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'agents/crush/**'
+      - 'base/**'
+      - '.github/workflows/crush-container.yml'
     tags:
       - 'v*' 
   pull_request:

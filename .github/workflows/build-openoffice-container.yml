@@ -5,6 +5,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'open-office/**'
+      - 'base/**'
+      - '.github/workflows/build-openoffice-container.yml'
     tags:
       - 'v*' 
   pull_request:
