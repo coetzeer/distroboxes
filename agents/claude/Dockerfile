@@ -1,7 +1,8 @@
 FROM ghcr.io/coetzeer/arch-base:main
 
 # Install claude
-RUN brew install claude 2>/dev/null || true
+RUN brew install claude 2>/dev/null || true && \
+    npm install -g @agentclientprotocol/claude-agent-acp
 
 # Switch to the default user
 USER agent
