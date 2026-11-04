@@ -1,4 +1,4 @@
-FROM ghcr.io/raymondcoetzee/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/distroboxes/arch-base:main
 
 # Install goose
 RUN brew install goose 2>/dev/null || true

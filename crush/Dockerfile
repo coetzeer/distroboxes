@@ -1,4 +1,4 @@
-FROM ghcr.io/raymondcoetzee/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/distroboxes/arch-base:main
 
 # Install charmbracelet crush
 RUN brew install crush 2>/dev/null || true

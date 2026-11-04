@@ -1,4 +1,4 @@
-FROM ghcr.io/raymondcoetzee/distroboxes/arch-base:main
+FROM ghcr.io/coetzeer/distroboxes/arch-base:main
 
 # Install opencode
 RUN brew install opencode 2>/dev/null || true
