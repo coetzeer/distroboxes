@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -42,3 +43,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "v${{ steps.latest.outputs.version }}"
           git push origin "v${{ steps.latest.outputs.version }}"
+
+      - name: Trigger container build
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run claude-container.yml --ref "v${{ steps.latest.outputs.version }}"

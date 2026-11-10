@@ -10,19 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get latest freebuff release
+      - name: Get latest freebuff version
         id: latest
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          version=$(gh api repos/CodebuffAI/freebuff/releases/latest --jq '.tag_name')
-          version="${version#v}"
+          version=$(curl -fsSL https://registry.npmjs.org/freebuff/latest | jq -r '.version')
+          if [ -z "$version" ] || [ "$version" = "null" ]; then
+            echo "::error::Could not determine the latest freebuff version from npm"
+            exit 1
+          fi
           echo "version=$version" >> "$GITHUB_OUTPUT"
           echo "Latest freebuff version: $version"
 
@@ -42,3 +44,9 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag "v${{ steps.latest.outputs.version }}"
           git push origin "v${{ steps.latest.outputs.version }}"
+
+      - name: Trigger container build
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run freebuff-container.yml --ref "v${{ steps.latest.outputs.version }}"
