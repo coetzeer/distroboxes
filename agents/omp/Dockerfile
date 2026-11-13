@@ -2,7 +2,7 @@ FROM ghcr.io/coetzeer/arch-base:main
 
 # Install Node.js and oh-my-pi
 USER root
-RUN pacman -S --noconfirm nodejs npm && \
+RUN pacman -Syu --noconfirm nodejs npm && \
     npm install -g @oh-my-pi/pi-coding-agent
 
 # Switch to the default user

@@ -5,7 +5,7 @@ RUN brew install claude 2>/dev/null || true
 
 # Install Node.js and claude ACP adapter
 USER root
-RUN pacman -S --noconfirm nodejs npm && \
+RUN pacman -Syu --noconfirm nodejs npm && \
     npm install -g @agentclientprotocol/claude-agent-acp
 
 # Switch to the default user

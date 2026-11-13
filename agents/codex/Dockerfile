@@ -5,7 +5,7 @@ RUN brew install codex 2>/dev/null || true
 
 # Install Node.js and codex ACP adapter
 USER root
-RUN pacman -S --noconfirm nodejs npm && \
+RUN pacman -Syu --noconfirm nodejs npm && \
     npm install -g @agentclientprotocol/codex-acp
 
 # Switch to the default user

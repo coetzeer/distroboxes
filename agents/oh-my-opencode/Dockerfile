@@ -5,7 +5,7 @@ RUN brew install opencode 2>/dev/null || true
 
 # Install Node.js and oh-my-opencode
 USER root
-RUN pacman -S --noconfirm nodejs npm && \
+RUN pacman -Syu --noconfirm nodejs npm && \
     npm install -g oh-my-opencode
 
 # Switch to the default user

@@ -2,7 +2,7 @@ FROM ghcr.io/coetzeer/arch-base:main
 
 # Install Node.js and pi-gsd
 USER root
-RUN pacman -S --noconfirm nodejs npm && \
+RUN pacman -Syu --noconfirm nodejs npm && \
     npm install -g @opengsd/gsd-pi
 
 # Switch to the default user
