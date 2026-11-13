@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/oh-my-opencode/**'
-      - 'base/**'
       - '.github/workflows/oh-my-opencode-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/oh-my-opencode/**'
-      - 'base/**'
       - '.github/workflows/oh-my-opencode-container.yml'
   workflow_dispatch: # Allows manual trigger
 

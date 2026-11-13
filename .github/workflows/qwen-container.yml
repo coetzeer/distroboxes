@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/qwen/**'
-      - 'base/**'
       - '.github/workflows/qwen-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/qwen/**'
-      - 'base/**'
       - '.github/workflows/qwen-container.yml'
   workflow_dispatch: # Allows manual trigger
 

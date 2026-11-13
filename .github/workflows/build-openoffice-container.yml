@@ -7,14 +7,10 @@ on:
       - 'main'
     paths:
       - 'open-office/**'
-      - 'base/**'
       - '.github/workflows/build-openoffice-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'open-office/**'
-      - 'base/**'
       - '.github/workflows/build-openoffice-container.yml'
   workflow_dispatch: # Allows manual trigger
 

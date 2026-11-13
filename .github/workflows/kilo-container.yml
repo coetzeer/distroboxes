@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/kilo/**'
-      - 'base/**'
       - '.github/workflows/kilo-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/kilo/**'
-      - 'base/**'
       - '.github/workflows/kilo-container.yml'
   workflow_dispatch: # Allows manual trigger
 

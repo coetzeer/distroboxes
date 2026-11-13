@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'ai/**'
-      - 'base/**'
       - '.github/workflows/build-ai-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'ai/**'
-      - 'base/**'
       - '.github/workflows/build-ai-container.yml'
   workflow_dispatch: # Allows manual trigger
 

@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/codex/**'
-      - 'base/**'
       - '.github/workflows/codex-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/codex/**'
-      - 'base/**'
       - '.github/workflows/codex-container.yml'
   workflow_dispatch: # Allows manual trigger
 

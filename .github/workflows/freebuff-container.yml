@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/freebuff/**'
-      - 'base/**'
       - '.github/workflows/freebuff-container.yml'
-    tags:
-      - 'v*'
   pull_request:
     paths:
       - 'agents/freebuff/**'
-      - 'base/**'
       - '.github/workflows/freebuff-container.yml'
   workflow_dispatch: # Allows manual trigger
 

@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/commandcode/**'
-      - 'base/**'
       - '.github/workflows/commandcode-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/commandcode/**'
-      - 'base/**'
       - '.github/workflows/commandcode-container.yml'
   workflow_dispatch: # Allows manual trigger
 

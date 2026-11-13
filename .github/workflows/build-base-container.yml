@@ -7,8 +7,6 @@ on:
     paths:
       - 'base/**'
       - '.github/workflows/build-base-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'base/**'
@@ -79,6 +77,43 @@ jobs:
           name: digests
           path: /tmp/digests/*.digest
           if-no-files-found: error
+
+  # The base image must be pushed before any dependent image is built, so
+  # dispatch the dependent workflows only after this job succeeds. Separate
+  # workflows have no ordering guarantees on their own.
+  dispatch-dependents:
+    needs:
+      - build-and-push
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - name: Dispatch dependent container builds
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          for wf in \
+            claude-container.yml \
+            codex-container.yml \
+            commandcode-container.yml \
+            crush-container.yml \
+            freebuff-container.yml \
+            goose-container.yml \
+            kilo-container.yml \
+            kiro-container.yml \
+            oh-my-opencode-container.yml \
+            omp-container.yml \
+            opencode-container.yml \
+            pi-container.yml \
+            pi-gsd-container.yml \
+            qwen-container.yml \
+            build-ai-container.yml \
+            build-openoffice-container.yml; do
+            echo "Dispatching $wf"
+            gh workflow run "$wf" --ref main
+          done
 
   # merge:
   #   runs-on: ubuntu-latest

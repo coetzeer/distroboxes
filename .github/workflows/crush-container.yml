@@ -6,14 +6,10 @@ on:
       - 'main'
     paths:
       - 'agents/crush/**'
-      - 'base/**'
       - '.github/workflows/crush-container.yml'
-    tags:
-      - 'v*' 
   pull_request:
     paths:
       - 'agents/crush/**'
-      - 'base/**'
       - '.github/workflows/crush-container.yml'
   workflow_dispatch: # Allows manual trigger
 
