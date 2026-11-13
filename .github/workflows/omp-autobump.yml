@@ -1,0 +1,48 @@
+name: Omp Version Autobump
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-and-bump:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest omp npm release
+        id: latest
+        run: |
+          version=$(npm view @oh-my-pi/pi-coding-agent version)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Latest omp version: $version"
+
+      - name: Check if tag exists
+        id: check
+        run: |
+          if git rev-parse "v${{ steps.latest.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create and push version tag
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ steps.latest.outputs.version }}"
+          git push origin "v${{ steps.latest.outputs.version }}"
+
+      - name: Trigger container build
+        if: steps.check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run omp-container.yml --ref "v${{ steps.latest.outputs.version }}"
