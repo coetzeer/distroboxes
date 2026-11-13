@@ -19,7 +19,10 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
     export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
 # Install language servers
-RUN brew install typescript-language-server pyright rust-analyzer gopls 2>/dev/null || true
+RUN brew install typescript-language-server vscode-langservers-extracted tailwindcss-language-server yaml-language-server python-lsp-server ruff-lsp systemd-lsp ccls rust-analyzer kotlin-language-server erlang-language-platform fish-lsp jdtls ruby-lsp 2>/dev/null || true
+
+# clangd ships with clang (no standalone Homebrew formula)
+RUN pacman -S --noconfirm clang
 
 # Switch to the new user and set the working directory
 USER $USER
